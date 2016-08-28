@@ -1,5 +1,6 @@
 package com.github.openspaceapp.jbe.application;
 
+import com.github.openspaceapp.jbe.domain.service.impl.KonopasServiceImpl;
 import com.github.openspaceapp.jbe.rest.KonopasResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
@@ -23,7 +24,7 @@ public class OpenSpaceApplication extends Application<OpenSpaceConfiguration> {
     @Override
     public void run(OpenSpaceConfiguration configuration,
                     Environment environment) {
-        environment.jersey().register(new KonopasResource());
+        environment.jersey().register(new KonopasResource(new KonopasServiceImpl()));
 //        environment.healthChecks().register("template", new SignatureHealthCheck());
     }
 
