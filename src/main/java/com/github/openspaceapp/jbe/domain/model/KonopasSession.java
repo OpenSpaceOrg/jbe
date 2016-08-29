@@ -1,12 +1,12 @@
 package com.github.openspaceapp.jbe.domain.model;
 
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 
 import java.util.List;
 
 @Builder
-@Data
+@Getter
 public class KonopasSession {
     private String id;
     private String title;
