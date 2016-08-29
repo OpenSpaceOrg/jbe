@@ -1,0 +1,62 @@
+swagger: '2.0'
+info:
+  title: OpenSpace app API
+  description: s
+  version: "0.1.0"
+schemes:
+  - https
+basePath: /v1
+produces:
+  - application/json
+paths:
+  /konopas:
+    get:
+      summary: Product Types
+      description: |
+        The schedule in konOpas format for 'programs'
+      responses:
+        200:
+          description: An array of products
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Program'
+definitions:
+  Program:
+    type: object
+    required: [ id ]
+    properties:
+      id:
+        type: string
+      title:
+        type: string
+      tags:
+        type: array
+        items:
+          type: string
+      date:
+        type: string
+      time:
+        type: string
+      mins:
+        type: string
+        description: duration of session, e.g. "90"
+      loc:
+        type: array
+        items:
+          type: string
+      people:
+        type: array
+        items:
+          $ref: "#/definitions/People"
+      desc:
+        type: string
+        description: Every prögrammé item really ought to have an explanation, unless it's really evident from the title itself what it'll be about.
+  People:
+    type: object
+    required: [ id ]
+    properties:
+      id:
+        type: string
+      name:
+        type: string
