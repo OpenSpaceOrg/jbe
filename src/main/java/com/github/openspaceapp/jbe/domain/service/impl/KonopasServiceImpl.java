@@ -5,10 +5,12 @@ import com.github.openspaceapp.jbe.domain.model.KonopasSession;
 import com.github.openspaceapp.jbe.domain.service.KonopasService;
 import com.google.common.collect.Lists;
 
+import java.util.List;
+
 public class KonopasServiceImpl implements KonopasService {
     @Override
-    public KonopasSession getProgram() {
-        return KonopasSession.builder()
+    public List<KonopasSession> getProgram() {
+        return Lists.newArrayList(KonopasSession.builder()
                 .id("1234")
                 .title("A Really Cool Item Title")
                 .date("2013-12-24")
@@ -21,6 +23,7 @@ public class KonopasServiceImpl implements KonopasService {
                         new KonopasPerson("2345", "Just Sömeguy"),
                         new KonopasPerson("4567", "Andhis Friend, Jr.")
                 ))
-                .build();
+                .build()
+        );
     }
 }

@@ -8,6 +8,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.util.List;
 
 @Path("/v1")
 @Produces(MediaType.APPLICATION_JSON)
@@ -18,7 +19,7 @@ public class KonopasResource {
 
     @GET
     @Path("/konopas")
-    public KonopasSession get() {
+    public List<KonopasSession> get() {
         return konopasService.getProgram();
     }
 

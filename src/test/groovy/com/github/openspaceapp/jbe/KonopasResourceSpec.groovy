@@ -31,7 +31,7 @@ class KonopasResourceSpec extends Specification {
         then:
             response.status == 200
             response.contentType == ContentType.JSON.toString()
-            response.data == [
+            response.data == [[
                     "id"    : "1234",
                     "title" : "A Really Cool Item Title",
                     "tags"  : ["Some track", "Another track"],
@@ -44,6 +44,6 @@ class KonopasResourceSpec extends Specification {
                             ["id": "4567", "name": "Andhis Friend, Jr."]
                     ],
                     "desc"  : "Every prögrammé item really ought to have an explanation, unless it's really evident from the title itself what it'll be about."
-            ]
+            ]]
     }
 }
