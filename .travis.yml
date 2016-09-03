@@ -2,9 +2,6 @@ language: java
 sudo: false
 jdk:
 - oraclejdk8
-services:
-- docker
-install: "mvn docker:build"
 after_success:
 - bash <(curl -s https://codecov.io/bash)
 deploy:
