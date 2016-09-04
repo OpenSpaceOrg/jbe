@@ -15,8 +15,7 @@ class KonopasResourceSpec extends Specification {
     public static final DropwizardTestSupport<OpenSpaceConfiguration> SUPPORT =
             new DropwizardTestSupport<OpenSpaceConfiguration>(OpenSpaceApplication.class,
                     ResourceHelpers.resourceFilePath("openspaceapp.yaml"),
-                    ConfigOverride.config("server.applicationConnectors[0].port", "0"),
-                    ConfigOverride.config("server.adminConnectors[0].port", "0")
+                    ConfigOverride.config("server.connector.port", "0")
             );
 
     def setup() {
