@@ -38,8 +38,7 @@ public class GoogleSheetConnector {
     }
 
     public Optional<SheetImport> get(String spreadsheetId) {
-        String range = "A1:T2";
-        return getValuesForRange(spreadsheetId, range)
+        return getValuesForRange(spreadsheetId, "prog")
             .map(this::createSheetImportFromRow);
     }
 
