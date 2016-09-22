@@ -1,12 +1,8 @@
 package com.github.openspaceapp.jbe.infrastructure.client.impl;
 
+import com.github.openspaceapp.jbe.infrastructure.client.GoogleSheetsApi;
 import com.github.openspaceapp.jbe.infrastructure.client.model.SheetImport;
 import com.github.openspaceapp.jbe.infrastructure.client.model.SheetRow;
-import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.json.jackson2.JacksonFactory;
-import com.google.api.services.sheets.v4.Sheets;
-import com.google.api.services.sheets.v4.SheetsRequestInitializer;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -18,23 +14,15 @@ import java.util.stream.Collectors;
 @Slf4j
 public class GoogleSheetConnector {
 
-    private final String apiKey;
-    private HttpTransport HTTP_TRANSPORT;
+    private final GoogleSheetsApi sheets;
 
-    public GoogleSheetConnector(String apiKey) {
+    public GoogleSheetConnector(GoogleSheetsApi wrapper, String apiKey) {
         try {
-            HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+            sheets = wrapper;
+            sheets.init(apiKey);
         } catch (Throwable t) {
-            System.exit(1);
+            throw new RuntimeException("Google is down, retreat to underground survival bunker");
         }
-        this.apiKey = apiKey;
-    }
-
-    private Sheets getSheetsService() throws IOException {
-        return new Sheets
-            .Builder(HTTP_TRANSPORT, JacksonFactory.getDefaultInstance(), null)
-            .setGoogleClientRequestInitializer(new SheetsRequestInitializer(apiKey))
-            .setApplicationName("OpenSpaceApi jbe").build();
     }
 
     public Optional<SheetImport> get(String spreadsheetId) {
@@ -63,10 +51,7 @@ public class GoogleSheetConnector {
     private Optional<List<List<Object>>> getValuesForRange(String spreadsheetId, String range) {
         try {
             return Optional.of(
-                getSheetsService().spreadsheets().values()
-                    .get(spreadsheetId, range)
-                    .execute()
-                    .getValues()
+                sheets.getValues(spreadsheetId, range)
             );
         } catch (IOException e) {
             log.error("cannot read from spreadsheet={}, reason: exception={}", spreadsheetId, e.getMessage());
