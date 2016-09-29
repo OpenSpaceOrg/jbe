@@ -17,4 +17,8 @@ public class SheetRow {
             .map(x -> (String) x)
             .collect(Collectors.toList());
     }
+
+    public String get(int i) {
+        return columns.get(i);
+    }
 }
