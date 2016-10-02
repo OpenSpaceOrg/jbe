@@ -24,7 +24,12 @@ paths:
 definitions:
   Program:
     type: object
-    required: [ id ]
+    required:
+      - id
+      - title
+      - date
+      - time
+      - mins
     properties:
       id:
         type: string
