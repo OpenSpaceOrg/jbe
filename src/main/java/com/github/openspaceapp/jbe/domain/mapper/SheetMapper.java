@@ -1,4 +1,4 @@
-package com.github.openspaceapp.jbe.infrastructure.mapper;
+package com.github.openspaceapp.jbe.domain.mapper;
 
 import com.github.openspaceapp.jbe.domain.model.KonopasSession;
 import com.github.openspaceapp.jbe.infrastructure.client.model.SheetImport;

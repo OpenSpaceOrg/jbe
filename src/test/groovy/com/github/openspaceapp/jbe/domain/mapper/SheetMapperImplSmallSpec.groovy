@@ -1,4 +1,4 @@
-package com.github.openspaceapp.jbe.infrastructure.mapper
+package com.github.openspaceapp.jbe.domain.mapper
 
 import com.github.openspaceapp.jbe.application.exception.MissingHeaderException
 import com.github.openspaceapp.jbe.domain.model.KonopasPerson
@@ -8,7 +8,7 @@ import com.github.openspaceapp.jbe.infrastructure.client.model.SheetRow
 import spock.lang.Specification
 import spock.lang.Unroll
 
-class SheetMapperImplSpec extends Specification {
+class SheetMapperImplSmallSpec extends Specification {
     static requiredHeaders = ["id", "title", "date", "time"]
     static allHeaders = ["id", "title", "date", "time", "desc", "mins", "loc.0", "tags.0", "tags.1", "tags.2", "people.0.id", "people.0.name", "people.1.id", "people.1.name", "people.2.id", "people.2.name", "people.3.id", "people.3.name", "people.4.id", "people.4.name"]
 

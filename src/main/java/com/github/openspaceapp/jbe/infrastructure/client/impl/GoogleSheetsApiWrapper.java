@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.List;
 
-class GoogleSheetsApiWrapper implements GoogleSheetsApi {
+public class GoogleSheetsApiWrapper implements GoogleSheetsApi {
     private Sheets sheets;
 
     @Override
