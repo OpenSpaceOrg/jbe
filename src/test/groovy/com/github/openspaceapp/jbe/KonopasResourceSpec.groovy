@@ -30,19 +30,24 @@ class KonopasResourceSpec extends Specification {
         then:
             response.status == 200
             response.contentType == ContentType.JSON.toString()
-            response.data == [[
-                    "id"    : "1234",
-                    "title" : "A Really Cool Item Title",
-                    "tags"  : ["Some track", "Another track"],
-                    "date"  : "2013-12-24",
-                    "time"  : "14:30",
-                    "mins"  : "90",
-                    "loc"   : ["Some Room", "Some Area"],
-                    "people": [
-                            ["id": "2345", "name": "Just Sömeguy"],
-                            ["id": "4567", "name": "Andhis Friend, Jr."]
-                    ],
-                    "desc"  : "Every prögrammé item really ought to have an explanation, unless it's really evident from the title itself what it'll be about."
-            ]]
+            response.data == [
+                    [
+                            "id"    : "1",
+                            "title" : "Test",
+                            "tags"  : ["test", "", ""],
+                            "date"  : "01-01-1970",
+                            "time"  : "18:00",
+                            "mins"  : "60",
+                            "loc"   : ["nowhere"],
+                            "people": [
+                                    [id: "101", name: "Jason"],
+                                    [id: "102", name: "Christian"],
+                                    [id: "103", name: "TruBlu"],
+                                    [id: "104", name: "Mx Peper"],
+                                    [id: "105", name: "Jason Peper"]
+                            ],
+                            "desc"  : "none"
+                    ]
+            ]
     }
 }

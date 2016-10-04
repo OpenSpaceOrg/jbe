@@ -39,11 +39,11 @@ public class OpenSpaceApplication extends Application<OpenSpaceConfiguration> {
     }
 
     private KonopasService getKonopasService() {
-        return new KonopasServiceImpl(getSheetImporter(), getSheetMapper(), "");
+        return new KonopasServiceImpl(getSheetImporter(), getSheetMapper(), "1DNeCYZCYoWJBee9y9zgxJDzxd8J2SDZX9NjdwKiXPUE");
     }
 
     private SheetImporter getSheetImporter() {
-        return new GoogleSheetConnector(getGoogleSheetsApi(), "");
+        return new GoogleSheetConnector(getGoogleSheetsApi(), "AIzaSyCsdvwt5ewZCCY1c58B5mwaQK6dA36sSAk");
     }
 
     private SheetMapper getSheetMapper() {
