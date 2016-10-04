@@ -3,9 +3,12 @@ package com.github.openspaceapp.jbe.infrastructure.client.impl
 import spock.lang.Specification
 
 class GoogleSheetApiWrapperMediumSpec extends Specification {
-    public static final String APIKEY = "AIzaSyCsdvwt5ewZCCY1c58B5mwaQK6dA36sSAk"
-    public static final String VALID_SPREADSHEET = "1Vff_nSuxgiuctd2sCZ19CeZMp8OZgQRUkFweYNktJLs"
-    public static final String VALID_SHEET_NAME = "prog"
+    static final String APIKEY = "AIzaSyCsdvwt5ewZCCY1c58B5mwaQK6dA36sSAk"
+    static final String SPREADSHEET_FINN_CON = "1Vff_nSuxgiuctd2sCZ19CeZMp8OZgQRUkFweYNktJLs"
+    static final String SPREADSHEET_TEST_CON = "1DNeCYZCYoWJBee9y9zgxJDzxd8J2SDZX9NjdwKiXPUE"
+    static final String VALID_SHEET_NAME = "prog"
+    static
+    final ALL_HEADERS = ["id", "title", "date", "time", "desc", "mins", "loc.0", "tags.0", "tags.1", "tags.2", "people.0.id", "people.0.name", "people.1.id", "people.1.name", "people.2.id", "people.2.name", "people.3.id", "people.3.name", "people.4.id", "people.4.name"]
 
     def sheetApiWrapper = new GoogleSheetsApiWrapper()
 
@@ -16,11 +19,11 @@ class GoogleSheetApiWrapperMediumSpec extends Specification {
             notThrown Throwable
     }
 
-    def "get values from an existing spreadsheet"() {
+    def "get values from existing FinnConn example spreadsheet"() {
         given:
             sheetApiWrapper.init(APIKEY)
         when:
-            def values = sheetApiWrapper.getValues(VALID_SPREADSHEET, VALID_SHEET_NAME)
+            def values = sheetApiWrapper.getValues(SPREADSHEET_FINN_CON, VALID_SHEET_NAME)
         then:
             notThrown Throwable
             values.size() == 103
@@ -28,11 +31,23 @@ class GoogleSheetApiWrapperMediumSpec extends Specification {
             values.get(0).get(0) == "id"
     }
 
+    def "get values from existing TestCon example spreadsheet"() {
+        given:
+            sheetApiWrapper.init(APIKEY)
+        when:
+            def values = sheetApiWrapper.getValues(SPREADSHEET_TEST_CON, VALID_SHEET_NAME)
+        then:
+            notThrown Throwable
+            values.size() == 2
+            values.get(0) == ALL_HEADERS
+            values.get(1) == ["1", "Test", "01-01-1970", "18:00", "none", "60", "nowhere", "test", "", "", "101", "Jason", "102", "Christian", "103", "TruBlu", "104", "Mx Peper", "105", "Jason Peper"]
+    }
+
     def "expect exception when using invalid apikey"() {
         given:
             sheetApiWrapper.init("NotQuiteCorrectApiKey.Hopefully")
         when:
-            sheetApiWrapper.getValues(VALID_SPREADSHEET, VALID_SHEET_NAME)
+            sheetApiWrapper.getValues(SPREADSHEET_FINN_CON, VALID_SHEET_NAME)
         then:
             thrown IOException
     }
@@ -48,7 +63,7 @@ class GoogleSheetApiWrapperMediumSpec extends Specification {
 
     def "get exception when using getValues without init"() {
         when:
-            sheetApiWrapper.getValues(VALID_SPREADSHEET, VALID_SHEET_NAME)
+            sheetApiWrapper.getValues(SPREADSHEET_FINN_CON, VALID_SHEET_NAME)
         then:
             thrown NullPointerException
     }
