@@ -15,7 +15,7 @@ class KonopasServiceImplSmallSpec extends Specification {
 
     def "get data from client and map it"() {
         when:
-            def program = serviceImpl.getProgramWIP()
+            def program = serviceImpl.getProgram()
         then:
             1 * sheetImporter.get(sheetId) >> Optional.of(new SheetImport([""], []))
             1 * sheetMapper.map(_) >> [KonopasSession.builder().build()]
@@ -25,7 +25,7 @@ class KonopasServiceImplSmallSpec extends Specification {
         given:
             sheetImporter.get(_) >> Optional.empty()
         when:
-            serviceImpl.getProgramWIP()
+            serviceImpl.getProgram()
         then:
             thrown RuntimeException
     }
