@@ -50,4 +50,19 @@ class KonopasResourceSpec extends Specification {
                     ]
             ]
     }
+
+    def "get CORS header"() {
+        setup:
+            def client = new RESTClient("http://localhost:" + SUPPORT.getLocalPort())
+        when:
+            def response = client.get(
+                    path: "/v1/konopas",
+                    headers: ["Origin": "http://localhost"]
+            ) as HttpResponseDecorator
+        then:
+            response.status == 200
+            response.contentType == ContentType.JSON.toString()
+            response.headers."Access-Control-Allow-Credentials" == "true"
+            response.headers."Access-Control-Allow-Origin" == "http://localhost"
+    }
 }
