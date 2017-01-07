@@ -15,8 +15,7 @@ class GoogleSheetConnectorSmallSpec extends Specification {
             def expectedHeaders = ["id", "title"]
             def expectedRowZero = new SheetRow(["1", "Title"])
         when:
-            def sheetConnector = new GoogleSheetConnector(wrapper, ApiKey)
-            def sheetImport = sheetConnector.get(spreadsheetId).get()
+            def sheetImport = new GoogleSheetConnector(wrapper, ApiKey).get(spreadsheetId).get()
         then:
             1 * wrapper.init(ApiKey)
             1 * wrapper.getValues(spreadsheetId, "prog") >> [["id", "title"], ["1", "Title"]]
@@ -33,11 +32,11 @@ class GoogleSheetConnectorSmallSpec extends Specification {
             !sheetConnector.get("empty").isPresent()
     }
 
-    def "expect exception if wrapper throws expection on init"() {
+    def "expect exception if wrapper throws exception on init"() {
         setup:
             wrapper.init(_) >> { throw new IOException() }
         when:
-            def sheetConnector = new GoogleSheetConnector(wrapper, "NotQuiteCorrectApiKey.Hopefully")
+            new GoogleSheetConnector(wrapper, "NotQuiteCorrectApiKey.Hopefully")
         then:
             thrown RuntimeException
     }

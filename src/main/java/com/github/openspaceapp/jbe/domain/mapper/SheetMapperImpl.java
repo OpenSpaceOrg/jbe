@@ -15,7 +15,9 @@ import lombok.experimental.Wither;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class SheetMapperImpl implements SheetMapper {
     private final List<String> requiredHeaders = Lists.newArrayList("id", "title", "date", "time");
@@ -58,27 +60,16 @@ public class SheetMapperImpl implements SheetMapper {
     }
 
     private List<KonopasPerson> createPeople(Row row) {
-        return Lists.newArrayList(
-            new KonopasPerson(
-                row.get("people.0.id"),
-                row.get("people.0.name")
-            ),
-            new KonopasPerson(
-                row.get("people.1.id"),
-                row.get("people.1.name")
-            ),
-            new KonopasPerson(
-                row.get("people.2.id"),
-                row.get("people.2.name")
-            ),
-            new KonopasPerson(
-                row.get("people.3.id"),
-                row.get("people.3.name")
-            ),
-            new KonopasPerson(
-                row.get("people.4.id"),
-                row.get("people.4.name")
-            )
+        return IntStream.rangeClosed(0, 4).
+            mapToObj(index -> getPersonForIndex(index, row))
+            .filter(Objects::nonNull)
+            .collect(Collectors.toList());
+    }
+
+    private KonopasPerson getPersonForIndex(int index, Row row) {
+        return KonopasPerson.of(
+            row.get("people." + index + ".id"),
+            row.get("people." + index + ".name")
         );
     }
 

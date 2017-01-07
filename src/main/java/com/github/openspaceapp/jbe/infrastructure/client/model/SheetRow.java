@@ -19,6 +19,9 @@ public class SheetRow {
     }
 
     public String get(int i) {
+        if (columns.size() <= i) {
+            return null;
+        }
         return columns.get(i);
     }
 }

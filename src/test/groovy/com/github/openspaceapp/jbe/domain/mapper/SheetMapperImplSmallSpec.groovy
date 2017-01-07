@@ -42,6 +42,34 @@ class SheetMapperImplSmallSpec extends Specification {
             new SheetMapperImpl().map(sheetImport) == [expectedKonopasSession]
     }
 
+    def "convert table with missing values in row"() {
+        setup:
+            def sheetImport = new SheetImport(
+                    allHeaders,
+                    [new SheetRow(["1", "title", "2016-01-20", "12:00", "a description", "45", "location",
+                                   "tag1", "tag2", "tag3",
+                                   "101", "Jason",
+                                   "102", "Christian",
+                                   "103", "TruBlu",
+                                   "104", "Mx Peper"])])
+            def expectedKonopasSession = KonopasSession.builder()
+                    .id("1")
+                    .title("title")
+                    .date("2016-01-20")
+                    .desc("a description")
+                    .time("12:00")
+                    .mins("45")
+                    .loc(["location"])
+                    .tags(["tag1", "tag2", "tag3"])
+                    .people([new KonopasPerson("101", "Jason"),
+                             new KonopasPerson("102", "Christian"),
+                             new KonopasPerson("103", "TruBlu"),
+                             new KonopasPerson("104", "Mx Peper")])
+                    .build()
+        expect:
+            new SheetMapperImpl().map(sheetImport) == [expectedKonopasSession]
+    }
+
     @Unroll
     def "abort if field #header is missing in Header"() {
         setup:

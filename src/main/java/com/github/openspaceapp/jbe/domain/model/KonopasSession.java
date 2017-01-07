@@ -1,12 +1,16 @@
 package com.github.openspaceapp.jbe.domain.model;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.util.List;
 
 @Builder
 @Getter
 @EqualsAndHashCode
+@ToString
 public class KonopasSession {
     private String id;
     private String title;

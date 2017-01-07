@@ -30,25 +30,6 @@ class KonopasResourceSpec extends Specification {
         then:
             response.status == 200
             response.contentType == ContentType.JSON.toString()
-            response.data == [
-                    [
-                            "id"    : "1",
-                            "title" : "Test",
-                            "tags"  : ["test", "", ""],
-                            "date"  : "01-01-1970",
-                            "time"  : "18:00",
-                            "mins"  : "60",
-                            "loc"   : ["nowhere"],
-                            "people": [
-                                    [id: "101", name: "Jason"],
-                                    [id: "102", name: "Christian"],
-                                    [id: "103", name: "TruBlu"],
-                                    [id: "104", name: "Mx Peper"],
-                                    [id: "105", name: "Jason Peper"]
-                            ],
-                            "desc"  : "none"
-                    ]
-            ]
     }
 
     def "get CORS header"() {

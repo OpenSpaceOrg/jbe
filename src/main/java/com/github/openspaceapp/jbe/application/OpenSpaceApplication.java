@@ -37,13 +37,7 @@ public class OpenSpaceApplication extends Application<OpenSpaceConfiguration> {
     public void run(OpenSpaceConfiguration configuration,
                     Environment environment) {
         environment.jersey().register(getKonopasResource());
-        FilterRegistration.Dynamic filter = environment.servlets().addFilter("CORS", CrossOriginFilter.class);
-        filter.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
-        filter.setInitParameter("allowedOrigins", "*");
-        filter.setInitParameter("allowedHeaders", "Content-Type,Authorization,X-Requested-With,Content-Length,Accept,Origin");
-        filter.setInitParameter("allowedMethods", "GET,PUT,POST,DELETE,OPTIONS");
-        filter.setInitParameter("preflightMaxAge", "1800");
-        filter.setInitParameter("allowCredentials", "true");
+        setCorsFilter(environment);
     }
 
     private KonopasResource getKonopasResource() {
@@ -64,6 +58,16 @@ public class OpenSpaceApplication extends Application<OpenSpaceConfiguration> {
 
     private GoogleSheetsApi getGoogleSheetsApi() {
         return new GoogleSheetsApiWrapper();
+    }
+
+    private void setCorsFilter(Environment environment) {
+        FilterRegistration.Dynamic filter = environment.servlets().addFilter("CORS", CrossOriginFilter.class);
+        filter.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
+        filter.setInitParameter("allowedOrigins", "*");
+        filter.setInitParameter("allowedHeaders", "Content-Type,Authorization,X-Requested-With,Content-Length,Accept,Origin");
+        filter.setInitParameter("allowedMethods", "GET,PUT,POST,DELETE,OPTIONS");
+        filter.setInitParameter("preflightMaxAge", "1800");
+        filter.setInitParameter("allowCredentials", "true");
     }
 
 }
