@@ -1,5 +1,5 @@
 # JBE
-[![Build Status](https://travis-ci.org/jasontrublu/openspaceapp-jbe.svg?branch=master)](https://travis-ci.org/jasontrublu/openspaceapp-jbe)[![codecov](https://codecov.io/gh/jasontrublu/openspaceapp-jbe/branch/master/graph/badge.svg)](https://codecov.io/gh/jasontrublu/openspaceapp-jbe)
+[![Build Status](https://travis-ci.org/OpenSpaceOrg/jbe.svg?branch=master)](https://travis-ci.org/jasontrublu/openspaceapp-jbe)[![codecov](https://codecov.io/gh/OpenSpaceOrg/jbe/branch/master/graph/badge.svg)](https://codecov.io/gh/jasontrublu/openspaceapp-jbe)
 
 Java back-end for OpenSpace App
 
