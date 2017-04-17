@@ -4,3 +4,6 @@ server:
   connector:
     type: http
     port: 8080
+
+apiKey: "AIzaSyCsdvwt5ewZCCY1c58B5mwaQK6dA36sSAk"
+sheetId: "1DNeCYZCYoWJBee9y9zgxJDzxd8J2SDZX9NjdwKiXPUE"

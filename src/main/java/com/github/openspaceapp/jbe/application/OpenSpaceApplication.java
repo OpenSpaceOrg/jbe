@@ -36,20 +36,25 @@ public class OpenSpaceApplication extends Application<OpenSpaceConfiguration> {
     @Override
     public void run(OpenSpaceConfiguration configuration,
                     Environment environment) {
-        environment.jersey().register(getKonopasResource());
+        environment.jersey().register(getKonopasResource(configuration));
         setCorsFilter(environment);
     }
 
-    private KonopasResource getKonopasResource() {
-        return new KonopasResource(getKonopasService());
+    private KonopasResource getKonopasResource(OpenSpaceConfiguration configuration) {
+        return new KonopasResource(getKonopasService(configuration));
     }
 
-    private KonopasService getKonopasService() {
-        return new KonopasServiceImpl(getSheetImporter(), getSheetMapper(), "1DNeCYZCYoWJBee9y9zgxJDzxd8J2SDZX9NjdwKiXPUE");
+    private KonopasService getKonopasService(OpenSpaceConfiguration configuration) {
+        return new KonopasServiceImpl(
+            getSheetImporter(configuration),
+            getSheetMapper(),
+            configuration.getSheetId());
     }
 
-    private SheetImporter getSheetImporter() {
-        return new GoogleSheetConnector(getGoogleSheetsApi(), "AIzaSyCsdvwt5ewZCCY1c58B5mwaQK6dA36sSAk");
+    private SheetImporter getSheetImporter(OpenSpaceConfiguration configuration) {
+        return new GoogleSheetConnector(
+            getGoogleSheetsApi(),
+            configuration.getApiKey());
     }
 
     private SheetMapper getSheetMapper() {
