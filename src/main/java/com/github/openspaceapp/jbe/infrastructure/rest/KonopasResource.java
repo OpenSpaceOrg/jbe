@@ -1,7 +1,7 @@
-package com.github.openspaceapp.jbe.rest;
+package com.github.openspaceapp.jbe.infrastructure.rest;
 
 import com.github.openspaceapp.jbe.domain.service.KonopasService;
-import com.github.openspaceapp.jbe.rest.response.KonopasSessionResponse;
+import com.github.openspaceapp.jbe.infrastructure.rest.response.KonopasSessionResponse;
 import lombok.RequiredArgsConstructor;
 
 import javax.ws.rs.GET;

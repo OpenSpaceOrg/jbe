@@ -1,4 +1,4 @@
-package com.github.openspaceapp.jbe.rest.response;
+package com.github.openspaceapp.jbe.infrastructure.rest.response;
 
 import com.github.openspaceapp.jbe.domain.model.KonopasSession;
 import com.google.common.collect.Lists;

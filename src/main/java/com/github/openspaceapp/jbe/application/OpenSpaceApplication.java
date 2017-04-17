@@ -8,7 +8,7 @@ import com.github.openspaceapp.jbe.infrastructure.client.GoogleSheetsApi;
 import com.github.openspaceapp.jbe.infrastructure.client.SheetImporter;
 import com.github.openspaceapp.jbe.infrastructure.client.impl.GoogleSheetConnector;
 import com.github.openspaceapp.jbe.infrastructure.client.impl.GoogleSheetsApiWrapper;
-import com.github.openspaceapp.jbe.rest.KonopasResource;
+import com.github.openspaceapp.jbe.infrastructure.rest.KonopasResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
