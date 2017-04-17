@@ -6,7 +6,7 @@ after_success:
 - bash <(curl -s https://codecov.io/bash)
 deploy:
   provider: releases
-  api_key:
+  API_KEY:
     secure: Uf7zGLywGbGYiX2ocqgBm89x0TYRXedLxAPOt7NtG7L/3JLIWXnUgN5dGlwbkY1ahd/p/AyU3O5IrLnkXlGZf/JNmHCUqMDEGb1qi8lFWqnSU0e2ky4iCPEpZE/oGFDG2ffci4xvuKV/RVRSIXh8a0dqC6WMivs5v3NC2wv5fvwyuhZ7anhu2Rl35SDotVOfXOWjZugKgkwMlz9TMxcf6B3N8GGzbZ5pDKB1sQLQjh0YwqwetmvV/3WeSuMSQ5mMvoCoUVn4AhDp7hXst2FSwI3ucBkyWzL6WyTTpGWi4n+uMUYcgEYKU+4aFdwRkl1CPQXov7TLDn+zma20Nz0YKRJE4npJoG7tJOY5EXs3S35axlIWuOn6eo+6js0JairALS04NwY4nuN0IsMMPK6Tp2879chqHzuGTkaN5UGI5kg57EofVAC0SzOcDGyzjFvGs9GyvM37rXhids63QPOmPjVZUg65/lZgnZ2hHXH79oR/1JhAbKxlQ03+p2UFbpe54zbz1dWjjopvThPoWeVPJve2sX8wMoxrb2RcD5ArarsWvGf+9iuNuEK0+Qi09gVxgyh+gano7fReeF7rfaMMHpCoTLdDi8z32XEz+wWaKonTdhoqu3pnNH2ePhFgSpCdtsJpoo2MLSirWYtP9EIiWSbAPhvRMp5ytqbjtF8XPqA=
   file_glob: true
   file: "target/java-backend-*.jar"
