@@ -10,14 +10,18 @@ import com.github.openspaceapp.jbe.infrastructure.client.impl.GoogleSheetConnect
 import com.github.openspaceapp.jbe.infrastructure.client.impl.GoogleSheetsApiWrapper;
 import com.github.openspaceapp.jbe.infrastructure.rest.KonopasResource;
 import io.dropwizard.Application;
+import io.dropwizard.configuration.EnvironmentVariableSubstitutor;
+import io.dropwizard.configuration.SubstitutingSourceProvider;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import lombok.extern.slf4j.Slf4j;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
 import java.util.EnumSet;
 
+@Slf4j
 public class OpenSpaceApplication extends Application<OpenSpaceConfiguration> {
     public static void main(String[] args) throws Exception {
         new OpenSpaceApplication().run(args);
@@ -30,7 +34,12 @@ public class OpenSpaceApplication extends Application<OpenSpaceConfiguration> {
 
     @Override
     public void initialize(Bootstrap<OpenSpaceConfiguration> bootstrap) {
-        // nothing to do yet
+        // Enable variable substitution with environment variables
+        bootstrap.setConfigurationSourceProvider(
+            new SubstitutingSourceProvider(bootstrap.getConfigurationSourceProvider(),
+                new EnvironmentVariableSubstitutor(false)
+            )
+        );
     }
 
     @Override

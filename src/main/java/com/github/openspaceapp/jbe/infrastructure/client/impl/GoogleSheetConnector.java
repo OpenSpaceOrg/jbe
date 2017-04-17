@@ -27,6 +27,7 @@ public class GoogleSheetConnector implements SheetImporter {
     }
 
     public Optional<SheetImport> get(String spreadsheetId) {
+        log.info("reading from spreadsheetId={}", spreadsheetId);
         return getValuesForRange(spreadsheetId, "prog")
             .map(this::createSheetImportFromRow);
     }
