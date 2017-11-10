@@ -3,7 +3,7 @@ package com.github.openspaceapp.jbe.domain.service
 import com.github.openspaceapp.jbe.domain.mapper.SheetMapper
 import com.github.openspaceapp.jbe.domain.model.KonopasSession
 import com.github.openspaceapp.jbe.domain.service.impl.KonopasServiceImpl
-import com.github.openspaceapp.jbe.infrastructure.client.SheetImporter
+import com.github.openspaceapp.jbe.domain.port.SheetImporter
 import com.github.openspaceapp.jbe.infrastructure.client.model.SheetImport
 import spock.lang.Specification
 

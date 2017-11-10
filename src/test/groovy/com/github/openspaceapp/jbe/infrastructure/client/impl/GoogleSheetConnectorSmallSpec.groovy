@@ -1,6 +1,6 @@
 package com.github.openspaceapp.jbe.infrastructure.client.impl
 
-import com.github.openspaceapp.jbe.infrastructure.client.GoogleSheetsApi
+import com.github.openspaceapp.jbe.domain.port.GoogleSheetsApi
 import com.github.openspaceapp.jbe.infrastructure.client.model.SheetRow
 import spock.lang.Specification
 

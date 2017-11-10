@@ -1,6 +1,6 @@
 package com.github.openspaceapp.jbe.infrastructure.client.impl;
 
-import com.github.openspaceapp.jbe.infrastructure.client.GoogleSheetsApi;
+import com.github.openspaceapp.jbe.domain.port.GoogleSheetsApi;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.sheets.v4.Sheets;

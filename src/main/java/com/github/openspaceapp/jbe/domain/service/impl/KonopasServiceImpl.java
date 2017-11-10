@@ -3,7 +3,7 @@ package com.github.openspaceapp.jbe.domain.service.impl;
 import com.github.openspaceapp.jbe.domain.mapper.SheetMapper;
 import com.github.openspaceapp.jbe.domain.model.KonopasSession;
 import com.github.openspaceapp.jbe.domain.service.KonopasService;
-import com.github.openspaceapp.jbe.infrastructure.client.SheetImporter;
+import com.github.openspaceapp.jbe.domain.port.SheetImporter;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;

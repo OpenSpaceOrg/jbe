@@ -1,7 +1,7 @@
 package com.github.openspaceapp.jbe.infrastructure.client.impl;
 
-import com.github.openspaceapp.jbe.infrastructure.client.GoogleSheetsApi;
-import com.github.openspaceapp.jbe.infrastructure.client.SheetImporter;
+import com.github.openspaceapp.jbe.domain.port.GoogleSheetsApi;
+import com.github.openspaceapp.jbe.domain.port.SheetImporter;
 import com.github.openspaceapp.jbe.infrastructure.client.model.SheetImport;
 import com.github.openspaceapp.jbe.infrastructure.client.model.SheetRow;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package com.github.openspaceapp.jbe.infrastructure.client;
+package com.github.openspaceapp.jbe.domain.port;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
