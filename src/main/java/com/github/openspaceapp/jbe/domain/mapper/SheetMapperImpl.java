@@ -11,6 +11,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.Wither;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+@Slf4j
 public class SheetMapperImpl implements SheetMapper {
     private final List<String> requiredHeaders = Lists.newArrayList("id", "title", "date", "time");
 
@@ -35,7 +37,17 @@ public class SheetMapperImpl implements SheetMapper {
     }
 
     private boolean isSessionValid(KonopasSession session) {
-        return !session.getTime().equals("/");
+        if (session == null || session.getTime() == null) {
+            log.warn("session or session time is null session={}", session);
+            return false;
+        }
+        if (session.getTime().equals("/")) {
+            log.info("session name={}, id={} is marked invalid by time=/",
+                    session.getTitle(), session.getId());
+            return false;
+        }
+        return true;
+
     }
 
     private KonopasSession createSession(Row row) {
