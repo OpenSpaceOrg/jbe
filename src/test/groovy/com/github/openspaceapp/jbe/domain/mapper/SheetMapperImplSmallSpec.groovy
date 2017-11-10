@@ -70,6 +70,20 @@ class SheetMapperImplSmallSpec extends Specification {
             new SheetMapperImpl().map(sheetImport) == [expectedKonopasSession]
     }
 
+    def "remove one row with a / instead of a time"() {
+        setup:
+            def sheetImport = new SheetImport(
+                    allHeaders,
+                    [new SheetRow(["1", "title", "2016-01-20", "/", "a description", "45", "location",
+                                   "tag1", "tag2", "tag3",
+                                   "101", "Jason",
+                                   "102", "Christian",
+                                   "103", "TruBlu",
+                                   "104", "Mx Peper"])])
+        expect:
+            new SheetMapperImpl().map(sheetImport) == []
+    }
+
     @Unroll
     def "abort if field #header is missing in Header"() {
         setup:

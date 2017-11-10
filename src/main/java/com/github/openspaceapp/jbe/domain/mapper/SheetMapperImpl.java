@@ -27,24 +27,29 @@ public class SheetMapperImpl implements SheetMapper {
         Headers headers = new Headers(sheetImport.getHeaders());
         requiredHeaders.forEach(requiredHeader -> throwIfHeaderMissing(headers, requiredHeader));
         return sheetImport.getRows().stream()
-            .map(Row::new)
-            .map(row -> row.withHeaders(headers))
-            .map(this::createSession)
-            .collect(Collectors.toList());
+                .map(Row::new)
+                .map(row -> row.withHeaders(headers))
+                .map(this::createSession)
+                .filter(this::isSessionValid)
+                .collect(Collectors.toList());
+    }
+
+    private boolean isSessionValid(KonopasSession session) {
+        return !session.getTime().equals("/");
     }
 
     private KonopasSession createSession(Row row) {
         return KonopasSession.builder()
-            .id(row.get("id"))
-            .title(row.get("title"))
-            .desc(row.get("desc"))
-            .date(row.get("date"))
-            .time(row.get("time"))
-            .mins(row.get("mins"))
-            .loc(createLocation(row))
-            .tags(createTags(row))
-            .people(createPeople(row))
-            .build();
+                .id(row.get("id"))
+                .title(row.get("title"))
+                .desc(row.get("desc"))
+                .date(row.get("date"))
+                .time(row.get("time"))
+                .mins(row.get("mins"))
+                .loc(createLocation(row))
+                .tags(createTags(row))
+                .people(createPeople(row))
+                .build();
     }
 
     private List<String> createLocation(Row row) {
@@ -53,23 +58,23 @@ public class SheetMapperImpl implements SheetMapper {
 
     private List<String> createTags(Row row) {
         return Lists.newArrayList(
-            row.get("tags.0"),
-            row.get("tags.1"),
-            row.get("tags.2")
+                row.get("tags.0"),
+                row.get("tags.1"),
+                row.get("tags.2")
         );
     }
 
     private List<KonopasPerson> createPeople(Row row) {
         return IntStream.rangeClosed(0, 4).
-            mapToObj(index -> getPersonForIndex(index, row))
-            .filter(Objects::nonNull)
-            .collect(Collectors.toList());
+                mapToObj(index -> getPersonForIndex(index, row))
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
 
     private KonopasPerson getPersonForIndex(int index, Row row) {
         return KonopasPerson.of(
-            row.get("people." + index + ".id"),
-            row.get("people." + index + ".name")
+                row.get("people." + index + ".id"),
+                row.get("people." + index + ".name")
         );
     }
 
