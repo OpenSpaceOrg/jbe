@@ -1,4 +1,4 @@
-package com.github.openspaceapp.jbe.infrastructure.client.model;
+package com.github.openspaceapp.jbe.domain.model;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

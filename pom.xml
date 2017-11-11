@@ -64,6 +64,11 @@
             <artifactId>google-api-services-sheets</artifactId>
             <version>v4-rev21-1.22.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.0.1.RELEASE</version>
+        </dependency>
     </dependencies>
 
     <build>

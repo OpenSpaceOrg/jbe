@@ -1,6 +1,6 @@
 package com.github.openspaceapp.jbe.domain.port;
 
-import com.github.openspaceapp.jbe.infrastructure.client.model.SheetImport;
+import com.github.openspaceapp.jbe.domain.model.SheetImport;
 
 import java.util.Optional;
 

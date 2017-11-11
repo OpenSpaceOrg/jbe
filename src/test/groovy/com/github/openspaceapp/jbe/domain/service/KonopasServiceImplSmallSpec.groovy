@@ -1,14 +1,14 @@
 package com.github.openspaceapp.jbe.domain.service
 
-import com.github.openspaceapp.jbe.domain.mapper.SheetMapper
+import com.github.openspaceapp.jbe.domain.mapper.SessionMapper
 import com.github.openspaceapp.jbe.domain.model.KonopasSession
 import com.github.openspaceapp.jbe.domain.service.impl.KonopasServiceImpl
 import com.github.openspaceapp.jbe.domain.port.SheetImporter
-import com.github.openspaceapp.jbe.infrastructure.client.model.SheetImport
+import com.github.openspaceapp.jbe.domain.model.SheetImport
 import spock.lang.Specification
 
 class KonopasServiceImplSmallSpec extends Specification {
-    def final sheetMapper = Mock SheetMapper
+    def final sheetMapper = Mock SessionMapper
     def final sheetImporter = Mock SheetImporter
     def final sheetId = "FUV65FR"
     def final serviceImpl = new KonopasServiceImpl(sheetImporter, sheetMapper, sheetId)

@@ -1,7 +1,7 @@
 package com.github.openspaceapp.jbe.infrastructure.client.impl
 
 import com.github.openspaceapp.jbe.domain.port.GoogleSheetsApi
-import com.github.openspaceapp.jbe.infrastructure.client.model.SheetRow
+import com.github.openspaceapp.jbe.domain.model.SheetRow
 import spock.lang.Specification
 
 class GoogleSheetConnectorSmallSpec extends Specification {

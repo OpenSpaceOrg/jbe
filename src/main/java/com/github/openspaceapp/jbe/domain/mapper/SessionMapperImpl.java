@@ -1,10 +1,10 @@
 package com.github.openspaceapp.jbe.domain.mapper;
 
-import com.github.openspaceapp.jbe.application.exception.MissingHeaderException;
+import com.github.openspaceapp.jbe.domain.model.MissingHeaderException;
 import com.github.openspaceapp.jbe.domain.model.KonopasPerson;
 import com.github.openspaceapp.jbe.domain.model.KonopasSession;
-import com.github.openspaceapp.jbe.infrastructure.client.model.SheetImport;
-import com.github.openspaceapp.jbe.infrastructure.client.model.SheetRow;
+import com.github.openspaceapp.jbe.domain.model.SheetImport;
+import com.github.openspaceapp.jbe.domain.model.SheetRow;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import lombok.AccessLevel;
@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Slf4j
-public class SheetMapperImpl implements SheetMapper {
+public class SessionMapperImpl implements SessionMapper {
     private final List<String> requiredHeaders = Lists.newArrayList("id", "title", "date", "time");
 
     @Override
@@ -31,7 +31,7 @@ public class SheetMapperImpl implements SheetMapper {
         return sheetImport.getRows().stream()
                 .map(Row::new)
                 .map(row -> row.withHeaders(headers))
-                .map(this::createSession)
+                .map(Row::createSession)
                 .filter(this::isSessionValid)
                 .collect(Collectors.toList());
     }
@@ -50,17 +50,54 @@ public class SheetMapperImpl implements SheetMapper {
 
     }
 
-    private KonopasSession createSession(Row row) {
+    private void throwIfHeaderMissing(Headers headers, String x) {
+        if (!headers.containsKey(x)) {
+            throw new MissingHeaderException("Header " + x + " is missing");
+        }
+    }
+}
+
+class Headers {
+    private Map<String, Integer> map = Maps.newHashMap();
+
+    Headers(List<String> headerList) {
+        int i = 0;
+        for (String header : headerList) {
+            map.put(header, i++);
+        }
+    }
+
+    Integer get(String key) {
+        return map.get(key);
+    }
+
+    boolean containsKey(String key) {
+        return map.containsKey(key);
+    }
+}
+
+@RequiredArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+class Row {
+    private final SheetRow sheetRow;
+    @Wither
+    private Headers headers;
+
+    String get(String key) {
+        return sheetRow.get(headers.get(key));
+    }
+
+    KonopasSession createSession() {
         return KonopasSession.builder()
-                .id(row.get("id"))
-                .title(row.get("title"))
-                .desc(row.get("desc"))
-                .date(row.get("date"))
-                .time(row.get("time"))
-                .mins(row.get("mins"))
-                .loc(createLocation(row))
-                .tags(createTags(row))
-                .people(createPeople(row))
+                .id(get("id"))
+                .title(get("title"))
+                .desc(get("desc"))
+                .date(get("date"))
+                .time(get("time"))
+                .mins(get("mins"))
+                .loc(createLocation(this))
+                .tags(createTags(this))
+                .people(createPeople(this))
                 .build();
     }
 
@@ -88,42 +125,5 @@ public class SheetMapperImpl implements SheetMapper {
                 row.get("people." + index + ".id"),
                 row.get("people." + index + ".name")
         );
-    }
-
-    private void throwIfHeaderMissing(Headers headers, String x) {
-        if (!headers.containsKey(x)) {
-            throw new MissingHeaderException("Header " + x + " is missing");
-        }
-    }
-}
-
-class Headers {
-    private Map<String, Integer> headers = Maps.newHashMap();
-
-    Headers(List<String> headerList) {
-        int i = 0;
-        for (String header : headerList) {
-            headers.put(header, i++);
-        }
-    }
-
-    Integer get(String key) {
-        return headers.get(key);
-    }
-
-    boolean containsKey(String key) {
-        return headers.containsKey(key);
-    }
-}
-
-@RequiredArgsConstructor
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
-class Row {
-    private final SheetRow sheetRow;
-    @Wither
-    private Headers headers;
-
-    String get(String key) {
-        return sheetRow.get(headers.get(key));
     }
 }

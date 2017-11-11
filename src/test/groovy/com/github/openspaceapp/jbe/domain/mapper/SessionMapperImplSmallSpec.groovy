@@ -1,14 +1,14 @@
 package com.github.openspaceapp.jbe.domain.mapper
 
-import com.github.openspaceapp.jbe.application.exception.MissingHeaderException
+import com.github.openspaceapp.jbe.domain.model.MissingHeaderException
 import com.github.openspaceapp.jbe.domain.model.KonopasPerson
 import com.github.openspaceapp.jbe.domain.model.KonopasSession
-import com.github.openspaceapp.jbe.infrastructure.client.model.SheetImport
-import com.github.openspaceapp.jbe.infrastructure.client.model.SheetRow
+import com.github.openspaceapp.jbe.domain.model.SheetImport
+import com.github.openspaceapp.jbe.domain.model.SheetRow
 import spock.lang.Specification
 import spock.lang.Unroll
 
-class SheetMapperImplSmallSpec extends Specification {
+class SessionMapperImplSmallSpec extends Specification {
     static requiredHeaders = ["id", "title", "date", "time"]
     static allHeaders = ["id", "title", "date", "time", "desc", "mins", "loc.0", "tags.0", "tags.1", "tags.2", "people.0.id", "people.0.name", "people.1.id", "people.1.name", "people.2.id", "people.2.name", "people.3.id", "people.3.name", "people.4.id", "people.4.name"]
 
@@ -39,7 +39,7 @@ class SheetMapperImplSmallSpec extends Specification {
                              new KonopasPerson("105", "Jason Peper")])
                     .build()
         expect:
-            new SheetMapperImpl().map(sheetImport) == [expectedKonopasSession]
+            new SessionMapperImpl().map(sheetImport) == [expectedKonopasSession]
     }
 
     def "convert table with missing values in row"() {
@@ -67,7 +67,7 @@ class SheetMapperImplSmallSpec extends Specification {
                              new KonopasPerson("104", "Mx Peper")])
                     .build()
         expect:
-            new SheetMapperImpl().map(sheetImport) == [expectedKonopasSession]
+            new SessionMapperImpl().map(sheetImport) == [expectedKonopasSession]
     }
 
     def "remove one row with a / instead of a time"() {
@@ -81,7 +81,7 @@ class SheetMapperImplSmallSpec extends Specification {
                                    "103", "TruBlu",
                                    "104", "Mx Peper"])])
         expect:
-            new SheetMapperImpl().map(sheetImport) == []
+            new SessionMapperImpl().map(sheetImport) == []
     }
 
     @Unroll
@@ -91,7 +91,7 @@ class SheetMapperImplSmallSpec extends Specification {
             headers.remove(header)
             def sheetImport = new SheetImport(headers, [])
         when:
-            new SheetMapperImpl().map(sheetImport)
+            new SessionMapperImpl().map(sheetImport)
         then:
             def ex = thrown MissingHeaderException
             ex.getMessage() == "Header " + header + " is missing"

@@ -1,4 +1,4 @@
-package com.github.openspaceapp.jbe.application.exception;
+package com.github.openspaceapp.jbe.domain.model;
 
 public class MissingHeaderException extends RuntimeException {
     public MissingHeaderException(String message) {

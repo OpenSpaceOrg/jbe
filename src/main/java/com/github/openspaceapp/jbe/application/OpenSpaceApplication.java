@@ -1,11 +1,11 @@
 package com.github.openspaceapp.jbe.application;
 
-import com.github.openspaceapp.jbe.domain.mapper.SheetMapper;
-import com.github.openspaceapp.jbe.domain.mapper.SheetMapperImpl;
-import com.github.openspaceapp.jbe.domain.service.KonopasService;
-import com.github.openspaceapp.jbe.domain.service.impl.KonopasServiceImpl;
+import com.github.openspaceapp.jbe.domain.mapper.SessionMapper;
+import com.github.openspaceapp.jbe.domain.mapper.SessionMapperImpl;
 import com.github.openspaceapp.jbe.domain.port.GoogleSheetsApi;
 import com.github.openspaceapp.jbe.domain.port.SheetImporter;
+import com.github.openspaceapp.jbe.domain.service.KonopasService;
+import com.github.openspaceapp.jbe.domain.service.impl.KonopasServiceImpl;
 import com.github.openspaceapp.jbe.infrastructure.client.impl.GoogleSheetConnector;
 import com.github.openspaceapp.jbe.infrastructure.client.impl.GoogleSheetsApiWrapper;
 import com.github.openspaceapp.jbe.infrastructure.rest.KonopasResource;
@@ -16,6 +16,7 @@ import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
+import org.springframework.context.annotation.Bean;
 
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
@@ -36,9 +37,9 @@ public class OpenSpaceApplication extends Application<OpenSpaceConfiguration> {
     public void initialize(Bootstrap<OpenSpaceConfiguration> bootstrap) {
         // Enable variable substitution with environment variables
         bootstrap.setConfigurationSourceProvider(
-            new SubstitutingSourceProvider(bootstrap.getConfigurationSourceProvider(),
-                new EnvironmentVariableSubstitutor(false)
-            )
+                new SubstitutingSourceProvider(bootstrap.getConfigurationSourceProvider(),
+                        new EnvironmentVariableSubstitutor(false)
+                )
         );
     }
 
@@ -49,27 +50,32 @@ public class OpenSpaceApplication extends Application<OpenSpaceConfiguration> {
         setCorsFilter(environment);
     }
 
+    @Bean
     private KonopasResource getKonopasResource(OpenSpaceConfiguration configuration) {
         return new KonopasResource(getKonopasService(configuration));
     }
 
+    @Bean
     private KonopasService getKonopasService(OpenSpaceConfiguration configuration) {
         return new KonopasServiceImpl(
-            getSheetImporter(configuration),
-            getSheetMapper(),
-            configuration.getSheetId());
+                getSheetImporter(configuration),
+                getSheetMapper(),
+                configuration.getSheetId());
     }
 
+    @Bean
     private SheetImporter getSheetImporter(OpenSpaceConfiguration configuration) {
         return new GoogleSheetConnector(
-            getGoogleSheetsApi(),
-            configuration.getApiKey());
+                getGoogleSheetsApi(),
+                configuration.getApiKey());
     }
 
-    private SheetMapper getSheetMapper() {
-        return new SheetMapperImpl();
+    @Bean
+    private SessionMapper getSheetMapper() {
+        return new SessionMapperImpl();
     }
 
+    @Bean
     private GoogleSheetsApi getGoogleSheetsApi() {
         return new GoogleSheetsApiWrapper();
     }

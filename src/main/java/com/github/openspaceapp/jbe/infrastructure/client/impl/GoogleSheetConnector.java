@@ -2,8 +2,8 @@ package com.github.openspaceapp.jbe.infrastructure.client.impl;
 
 import com.github.openspaceapp.jbe.domain.port.GoogleSheetsApi;
 import com.github.openspaceapp.jbe.domain.port.SheetImporter;
-import com.github.openspaceapp.jbe.infrastructure.client.model.SheetImport;
-import com.github.openspaceapp.jbe.infrastructure.client.model.SheetRow;
+import com.github.openspaceapp.jbe.domain.model.SheetImport;
+import com.github.openspaceapp.jbe.domain.model.SheetRow;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -21,7 +21,7 @@ public class GoogleSheetConnector implements SheetImporter {
         try {
             sheets = wrapper;
             sheets.init(apiKey);
-        } catch (Throwable t) {
+        } catch (Exception t) {
             throw new RuntimeException("Google is down, retreat to underground survival bunker");
         }
     }
