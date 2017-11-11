@@ -7,3 +7,4 @@ server:
 
 apiKey: ${API_KEY:-""}
 sheetId: ${SHEET_ID:-"1DNeCYZCYoWJBee9y9zgxJDzxd8J2SDZX9NjdwKiXPUE"}
+conferenceSheetId: ${CONFERENCE_SHEET_ID:-"102tw1fL2afyOeVxCStFv9JIguqLyi4ptIi0x2tqJo4k"}

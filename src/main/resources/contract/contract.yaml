@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   title: OpenSpace app API
   description: s
-  version: "0.1.0"
+  version: "0.1.1"
 schemes:
   - https
 basePath: /v1
@@ -21,6 +21,16 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Program'
+  /conferences:
+    get:
+      summary: get available conferences
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Conference'
 definitions:
   Program:
     type: object
@@ -64,4 +74,14 @@ definitions:
       id:
         type: string
       name:
+        type: string
+  Conference:
+    type: object
+    required: [id, name, programSheetId]
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      programSheetId:
         type: string

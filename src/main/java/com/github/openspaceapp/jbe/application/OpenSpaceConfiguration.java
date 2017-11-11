@@ -9,4 +9,5 @@ import lombok.Setter;
 public class OpenSpaceConfiguration extends Configuration {
     private String apiKey;
     private String sheetId;
+    private String conferenceSheetId;
 }
