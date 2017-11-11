@@ -1,5 +1,5 @@
 # JBE
-[![Build Status](https://travis-ci.org/OpenSpaceOrg/jbe.svg?branch=master)](https://travis-ci.org/jasontrublu/openspaceapp-jbe)[![codecov](https://codecov.io/gh/OpenSpaceOrg/jbe/branch/master/graph/badge.svg)](https://codecov.io/gh/jasontrublu/openspaceapp-jbe)
+[![Build Status](https://travis-ci.org/OpenSpaceOrg/jbe.svg?branch=master)](https://travis-ci.org/OpenSpaceOrg/jbe)[![codecov](https://codecov.io/gh/OpenSpaceOrg/jbe/branch/master/graph/badge.svg)](https://codecov.io/gh/OpenSpaceOrg/jbe)
 
 Java back-end for OpenSpace App
 
@@ -11,6 +11,8 @@ Java back-end for OpenSpace App
 
 ## links
 
-* back-end deployed: https://openspaceappjbe.herokuapp.com/v1/konopas
+* back-end live: https://openspaceappjbe.herokuapp.com/v1/konopas
+* back-end PP: https://openspaceappjbe-pp.herokuapp.com/v1/konopas
 * front-end repository: https://github.com/offbyoni/konopas
-* front-end deployed: https://offbyoni.github.io/konopas/#
+* front-end live: https://offbyoni.github.io/konopas/
+* front-end PP: https://openspaceorg.github.io/pp/
