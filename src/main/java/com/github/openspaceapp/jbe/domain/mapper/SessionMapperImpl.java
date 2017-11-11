@@ -1,12 +1,12 @@
 package com.github.openspaceapp.jbe.domain.mapper;
 
-import com.github.openspaceapp.jbe.domain.model.MissingHeaderException;
+import com.github.openspaceapp.jbe.domain.model.Headers;
 import com.github.openspaceapp.jbe.domain.model.KonopasPerson;
 import com.github.openspaceapp.jbe.domain.model.KonopasSession;
+import com.github.openspaceapp.jbe.domain.model.MissingHeaderException;
 import com.github.openspaceapp.jbe.domain.model.SheetImport;
 import com.github.openspaceapp.jbe.domain.model.SheetRow;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -54,25 +53,6 @@ public class SessionMapperImpl implements SessionMapper {
         if (!headers.containsKey(x)) {
             throw new MissingHeaderException("Header " + x + " is missing");
         }
-    }
-}
-
-class Headers {
-    private Map<String, Integer> map = Maps.newHashMap();
-
-    Headers(List<String> headerList) {
-        int i = 0;
-        for (String header : headerList) {
-            map.put(header, i++);
-        }
-    }
-
-    Integer get(String key) {
-        return map.get(key);
-    }
-
-    boolean containsKey(String key) {
-        return map.containsKey(key);
     }
 }
 
@@ -127,3 +107,5 @@ class Row {
         );
     }
 }
+
+
