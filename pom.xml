@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.openspaceapp</groupId>
     <artifactId>java-backend</artifactId>
     <version>0.1-SNAPSHOT</version>
     <properties>
-        <java.version>1.8</java.version>
-        <groovy.version>2.4.7</groovy.version>
-        <groovy-eclipse-compiler.version>2.9.2-01</groovy-eclipse-compiler.version>
-        <groovy-eclipse-batch.version>2.4.3-01</groovy-eclipse-batch.version>
-        <maven-compiler-version>3.5.1</maven-compiler-version>
-        <spock.version>1.0-groovy-2.4</spock.version>
-        <lombok.version>1.16.10</lombok.version>
+        <maven.compiler.release>17</maven.compiler.release>
+        <groovy.version>4.0.13</groovy.version>
+        <groovy-eclipse-compiler.version>3.9.0</groovy-eclipse-compiler.version>
+        <groovy-eclipse-batch.version>4.0.13-03</groovy-eclipse-batch.version>
+        <maven-compiler-version>3.11.0</maven-compiler-version>
+        <spock.version>2.4-M1-groovy-4.0</spock.version>
+        <lombok.version>1.18.28</lombok.version>
         <dropwizard.version>1.0.0</dropwizard.version>
-        <docker.registry.name/><!-- leave empty for docker hub; use e.g. "localhost:5000/" for a local docker registry -->
+        <docker.registry.name/>
+        <!-- leave empty for docker hub; use e.g. "localhost:5000/" for a local docker registry -->
         <docker.repository.name>${docker.registry.name}com.github.openspaceapp/${project.artifactId}</docker.repository.name>
     </properties>
     <dependencies>
@@ -26,9 +26,10 @@
             <version>${lombok.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.codehaus.groovy</groupId>
+            <groupId>org.apache.groovy</groupId>
             <artifactId>groovy-all</artifactId>
             <version>${groovy.version}</version>
+            <type>pom</type>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -57,12 +58,17 @@
         <dependency>
             <groupId>com.google.api-client</groupId>
             <artifactId>google-api-client</artifactId>
-            <version>1.22.0</version>
+            <version>2.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.http-client</groupId>
+            <artifactId>google-http-client-jackson2</artifactId>
+            <version>1.43.3</version>
         </dependency>
         <dependency>
             <groupId>com.google.apis</groupId>
             <artifactId>google-api-services-sheets</artifactId>
-            <version>v4-rev21-1.22.0</version>
+            <version>v4-rev20230526-2.0.0</version>
         </dependency>
     </dependencies>
 
@@ -85,8 +91,6 @@
                 <!-- 2.8.0-01 and later require maven-compiler-plugin 3.1 or higher -->
                 <version>${maven-compiler-version}</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
                     <compilerId>groovy-eclipse-compiler</compilerId>
                     <verbose>false</verbose>
                     <compilerArguments>
@@ -114,25 +118,6 @@
                 </dependencies>
             </plugin>
             <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.7.201606060606</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>report</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>2.4.3</version>
@@ -157,10 +142,8 @@
                         </goals>
                         <configuration>
                             <transformers>
-                                <transformer
-                                        implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
-                                <transformer
-                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <mainClass>com.github.openspaceapp.jbe.application.OpenSpaceApplication</mainClass>
                                 </transformer>
                             </transformers>
@@ -265,4 +248,10 @@
             </plugin>
         </plugins>
     </build>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>groovy-plugins-release</id>
+            <url>https://groovy.jfrog.io/artifactory/plugins-release</url>
+        </pluginRepository>
+    </pluginRepositories>
 </project>
