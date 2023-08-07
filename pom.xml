@@ -14,36 +14,29 @@
         <groovy-eclipse-batch.version>2.4.3-01</groovy-eclipse-batch.version>
         <maven-compiler-version>3.5.1</maven-compiler-version>
         <spock.version>1.0-groovy-2.4</spock.version>
-        <lombok.version>1.18.24</lombok.version>
+        <lombok.version>1.16.10</lombok.version>
         <dropwizard.version>1.0.0</dropwizard.version>
         <docker.registry.name/><!-- leave empty for docker hub; use e.g. "localhost:5000/" for a local docker registry -->
         <docker.repository.name>${docker.registry.name}com.github.openspaceapp/${project.artifactId}</docker.repository.name>
     </properties>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>groovy-plugins-release</id>
-            <url>https://groovy.jfrog.io/artifactory/plugins-release</url>
-        </pluginRepository>
-    </pluginRepositories>
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
-            <scope>provided</scope>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.codehaus.groovy</groupId>-->
-<!--            <artifactId>groovy-all</artifactId>-->
-<!--            <version>${groovy.version}</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.spockframework</groupId>-->
-<!--            <artifactId>spock-core</artifactId>-->
-<!--            <version>${spock.version}</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>${groovy.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.spockframework</groupId>
+            <artifactId>spock-core</artifactId>
+            <version>${spock.version}</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-core</artifactId>
@@ -75,7 +68,7 @@
 
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
-<!--        <testSourceDirectory>src/test/groovy</testSourceDirectory>-->
+        <testSourceDirectory>src/test/groovy</testSourceDirectory>
         <plugins>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -94,30 +87,30 @@
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
-<!--                    <compilerId>groovy-eclipse-compiler</compilerId>-->
+                    <compilerId>groovy-eclipse-compiler</compilerId>
                     <verbose>false</verbose>
-<!--                    <compilerArguments>-->
-<!--                        <javaAgentClass>lombok.launch.Agent</javaAgentClass>-->
-<!--                    </compilerArguments>-->
-<!--                    <fork>true</fork>-->
+                    <compilerArguments>
+                        <javaAgentClass>lombok.launch.Agent</javaAgentClass>
+                    </compilerArguments>
+                    <fork>true</fork>
                 </configuration>
                 <dependencies>
-<!--                    <dependency>-->
-<!--                        <groupId>org.codehaus.groovy</groupId>-->
-<!--                        <artifactId>groovy-eclipse-compiler</artifactId>-->
-<!--                        <version>${groovy-eclipse-compiler.version}</version>-->
-<!--                    </dependency>-->
+                    <dependency>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy-eclipse-compiler</artifactId>
+                        <version>${groovy-eclipse-compiler.version}</version>
+                    </dependency>
                     <!-- for 2.8.0-01 and later you must have an explicit dependency on groovy-eclipse-batch -->
-<!--                    <dependency>-->
-<!--                        <groupId>org.codehaus.groovy</groupId>-->
-<!--                        <artifactId>groovy-eclipse-batch</artifactId>-->
-<!--                        <version>${groovy-eclipse-batch.version}</version>-->
-<!--                    </dependency>-->
-<!--                    <dependency>-->
-<!--                        <groupId>org.projectlombok</groupId>-->
-<!--                        <artifactId>lombok</artifactId>-->
-<!--                        <version>${lombok.version}</version>-->
-<!--                    </dependency>-->
+                    <dependency>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy-eclipse-batch</artifactId>
+                        <version>${groovy-eclipse-batch.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.projectlombok</groupId>
+                        <artifactId>lombok</artifactId>
+                        <version>${lombok.version}</version>
+                    </dependency>
                 </dependencies>
             </plugin>
             <plugin>
