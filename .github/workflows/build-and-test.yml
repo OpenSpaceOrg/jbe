@@ -18,6 +18,8 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
       - run: mvn test -Pintegration-test
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
 
   build-and-push-image:
     runs-on: ubuntu-latest
