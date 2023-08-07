@@ -14,15 +14,15 @@ import io.dropwizard.configuration.EnvironmentVariableSubstitutor;
 import io.dropwizard.configuration.SubstitutingSourceProvider;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
-import lombok.extern.slf4j.Slf4j;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
-
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
 import java.util.EnumSet;
 
-@Slf4j
 public class OpenSpaceApplication extends Application<OpenSpaceConfiguration> {
+    @SuppressWarnings("all")
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(OpenSpaceApplication.class);
+
     public static void main(String[] args) throws Exception {
         new OpenSpaceApplication().run(args);
     }
@@ -35,16 +35,11 @@ public class OpenSpaceApplication extends Application<OpenSpaceConfiguration> {
     @Override
     public void initialize(Bootstrap<OpenSpaceConfiguration> bootstrap) {
         // Enable variable substitution with environment variables
-        bootstrap.setConfigurationSourceProvider(
-            new SubstitutingSourceProvider(bootstrap.getConfigurationSourceProvider(),
-                new EnvironmentVariableSubstitutor(false)
-            )
-        );
+        bootstrap.setConfigurationSourceProvider(new SubstitutingSourceProvider(bootstrap.getConfigurationSourceProvider(), new EnvironmentVariableSubstitutor(false)));
     }
 
     @Override
-    public void run(OpenSpaceConfiguration configuration,
-                    Environment environment) {
+    public void run(OpenSpaceConfiguration configuration, Environment environment) {
         environment.jersey().register(getKonopasResource(configuration));
         setCorsFilter(environment);
     }
@@ -54,16 +49,11 @@ public class OpenSpaceApplication extends Application<OpenSpaceConfiguration> {
     }
 
     private KonopasService getKonopasService(OpenSpaceConfiguration configuration) {
-        return new KonopasServiceImpl(
-            getSheetImporter(configuration),
-            getSheetMapper(),
-            configuration.getSheetId());
+        return new KonopasServiceImpl(getSheetImporter(configuration), getSheetMapper(), configuration.getSheetId());
     }
 
     private SheetImporter getSheetImporter(OpenSpaceConfiguration configuration) {
-        return new GoogleSheetConnector(
-            getGoogleSheetsApi(),
-            configuration.getApiKey());
+        return new GoogleSheetConnector(getGoogleSheetsApi(), configuration.getApiKey());
     }
 
     private SheetMapper getSheetMapper() {
@@ -83,5 +73,4 @@ public class OpenSpaceApplication extends Application<OpenSpaceConfiguration> {
         filter.setInitParameter("preflightMaxAge", "1800");
         filter.setInitParameter("allowCredentials", "true");
     }
-
 }

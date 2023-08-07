@@ -2,7 +2,7 @@ package com.github.openspaceapp.jbe.infrastructure.client.impl
 
 import spock.lang.Specification
 
-class GoogleSheetApiWrapperMediumSpec extends Specification {
+class GoogleSheetApiWrapperMediumSpecIT extends Specification {
     static final String API_KEY = System.getenv("API_KEY")
     static final String SPREADSHEET_FINN_CON = "1Vff_nSuxgiuctd2sCZ19CeZMp8OZgQRUkFweYNktJLs"
     static final String SPREADSHEET_TEST_CON = "1qE68MWfcHFBHNApmUkcSCTA5uGMSTFf4bhJ5191jx5A"

@@ -3,7 +3,10 @@ server:
   applicationContextPath: /
   connector:
     type: http
-    port: 8080
+    port: ${PORT:-8080}
+
+logging:
+  level: ${LOGGING_LEVEL:-"INFO"}
 
 apiKey: ${API_KEY:-""}
 sheetId: ${SHEET_ID:-"1DNeCYZCYoWJBee9y9zgxJDzxd8J2SDZX9NjdwKiXPUE"}

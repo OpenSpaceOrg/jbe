@@ -4,7 +4,7 @@ import com.github.openspaceapp.jbe.infrastructure.client.GoogleSheetsApi
 import com.github.openspaceapp.jbe.infrastructure.client.model.SheetRow
 import spock.lang.Specification
 
-class GoogleSheetConnectorSmallSpec extends Specification {
+class GoogleSheetConnectorSmallSpecIT extends Specification {
 
     def wrapper = Mock(GoogleSheetsApi.class)
 
