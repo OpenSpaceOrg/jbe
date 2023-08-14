@@ -7,7 +7,7 @@ COPY src src
 RUN mvn -X package
 
 
-FROM eclipse-temurin:17-jre
+FROM eclipse-temurin:17.0.8_7-jre
 COPY --from=builder /opt/app/src/main/resources/* .
 COPY --from=builder /opt/app/target/java-backend*.jar app.jar
 ENTRYPOINT ["java","-jar","/app.jar","server", "/openspaceapp.yaml"]
