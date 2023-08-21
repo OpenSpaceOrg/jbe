@@ -185,7 +185,7 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpcomponents-parent</artifactId>
-            <version>11</version>
+            <version>13</version>
             <type>pom</type>
         </dependency>
         <dependency>
