@@ -15,7 +15,7 @@
         <groovy-eclipse-batch.version>4.0.13-03</groovy-eclipse-batch.version>
         <maven-compiler-version>3.11.0</maven-compiler-version>
         <spock.version>2.4-M1-groovy-4.0</spock.version>
-        <dropwizard.version>2.1.9</dropwizard.version>
+        <dropwizard.version>2.1.10</dropwizard.version>
         <docker.registry.name/>
         <!-- leave empty for docker hub; use e.g. "localhost:5000/" for a local docker registry -->
         <docker.repository.name>${docker.registry.name}com.github.openspaceapp/${project.artifactId}
