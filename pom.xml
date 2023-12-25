@@ -13,7 +13,7 @@
         <groovy.version>4.0.13</groovy.version>
         <groovy-eclipse-compiler.version>3.9.0</groovy-eclipse-compiler.version>
         <groovy-eclipse-batch.version>4.0.13-03</groovy-eclipse-batch.version>
-        <maven-compiler-version>3.12.0</maven-compiler-version>
+        <maven-compiler-version>3.12.1</maven-compiler-version>
         <spock.version>2.4-M1-groovy-4.0</spock.version>
         <dropwizard.version>2.1.11</dropwizard.version>
         <docker.registry.name/>
