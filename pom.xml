@@ -150,7 +150,7 @@
         <dependency>
             <groupId>com.fasterxml</groupId>
             <artifactId>oss-parent</artifactId>
-            <version>57</version>
+            <version>58</version>
             <type>pom</type>
         </dependency>
         <dependency>
