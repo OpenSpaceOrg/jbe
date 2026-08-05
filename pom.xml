@@ -10,7 +10,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>17</maven.compiler.release>
-        <groovy.version>4.0.13</groovy.version>
+        <groovy.version>4.0.18</groovy.version>
         <groovy-eclipse-compiler.version>3.9.0</groovy-eclipse-compiler.version>
         <groovy-eclipse-batch.version>4.0.13-03</groovy-eclipse-batch.version>
         <maven-compiler-version>3.12.1</maven-compiler-version>
