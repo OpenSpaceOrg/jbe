@@ -11,11 +11,11 @@ Java back-end for OpenSpace App
 
 ## links
 
-* back-end live: https://openspaceappjbe.herokuapp.com/v1/konopas
-* back-end PP: https://openspaceappjbe-pp.herokuapp.com/v1/konopas
-* front-end repository: https://github.com/offbyoni/konopas
-* front-end live: https://offbyoni.github.io/konopas/
-* front-end PP: https://openspaceorg.github.io/pp/
+* back-end live: -/- (we only deploy during the event)
+* back-end PP: -/-
+* front-end repository: [konopas](https://github.com/OpenSpaceOrg/konopas)
+* front-end live: scrts.de
+* front-end PP: -/-
 
 # Deploy on Heroku
 
