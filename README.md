@@ -14,7 +14,7 @@ Java back-end for OpenSpace App
 * back-end live: -/- (we only deploy during the event)
 * back-end PP: -/-
 * front-end repository: [konopas](https://github.com/OpenSpaceOrg/konopas)
-* front-end live: scrts.de
+* front-end live: [scrts.de](https://scrts.de)
 * front-end PP: -/-
 
 # Deploy on Heroku
